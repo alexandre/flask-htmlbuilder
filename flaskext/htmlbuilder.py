@@ -17,16 +17,16 @@ from __future__ import unicode_literals
 
 import collections
 import sys
-if sys.version_info.major == 3:
-    basestring = str
-    unicode = str
-
 from keyword import kwlist
 
 from flask import request, g
 
 
-__all__ = [
+if sys.version_info.major == 3:
+    basestring = str
+    unicode = str
+
+__all__ = [  # noqa
     'init_htmlbuilder', 'html', 'render', 'render_template', 'root_block',
     'block', 'RootBlock', 'Block', 'Context', 'Attrs'
 ]
@@ -503,7 +503,8 @@ class HasAttr(BaseHasElement):
 
         def meta_description():
             if 'description' in g.attrs.keys():
-                return html.meta(name='description', content=g.attrs['description'])
+                return html.meta(
+                    name='description', content=g.attrs['description'])
             else:
                 return None
 
